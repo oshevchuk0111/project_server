@@ -27,11 +27,11 @@ export class ServerStatusComponent implements OnInit {
         this.currentStatus = 'unknown';
       }
     }, 5000);
-  }
-
-  this.destroyRef.onDestroy(() => {
+    
+    this.destroyRef.onDestroy(() => {
     clearInterval(interval);
   })
+  }
 
   ngAfterViewInit() {
     console.log('AFTER VIEW INIT');
