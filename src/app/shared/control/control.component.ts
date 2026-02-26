@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
   ContentChild,
   contentChild,
+  AfterContentInit,
 } from '@angular/core';
 
 @Component({
@@ -22,18 +23,22 @@ import {
     '(click)': 'onClick()',
   },
 })
-export class ControlComponent {
+export class ControlComponent implements AfterContentInit {
   // @HostBinding('class') className = 'control';
   // @HostListener('click') onClick() {
   //   console.log('Clicked!');
   label = input.required<string>();
   private el = inject(ElementRef);
-
   // @ContentChild('input') private control?: ElementRef<
   //   HTMLInputElement | HTMLTextAreaElement
   // >;
   private control =
     contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  ngAfterContentInit() {
+    console.log('Контент ініціалізовано');
+    console.log(this.control());
+  }
 
   onClick() {
     console.log('Clicked!');
